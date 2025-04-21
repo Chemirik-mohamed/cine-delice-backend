@@ -1,4 +1,15 @@
-node_modules
-# Keep environment variables out of version control
+# Node
+node_modules/
+dist/
 .env
+
+# TypeScript
+*.tsbuildinfo
+*.js
+*.js.map
+
+# Prisma
 /generated/
+
+# Logs & système
+.DS_Store
