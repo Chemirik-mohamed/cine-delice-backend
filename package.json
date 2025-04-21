@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^22.14.1",
     "prisma": "^6.6.0",
     "tsx": "^4.19.3",
