@@ -8,6 +8,9 @@ dist/
 *.js
 *.js.map
 
+# TypeScript output
+dist/
+
 # Prisma
 /generated/
 
