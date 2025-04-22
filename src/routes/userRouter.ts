@@ -1,6 +1,11 @@
-import { router as userRouter } from "controllers/user/createUser";
-import Router  from "hono/router";
+// src/router/userRouter.ts
+import { Hono } from "hono";
 
-export const app = Router()
+import { createUser } from "controllers/user/createUser";
+import { getUserById } from "controllers/user/getUserById";
 
-app.route('/',userRouter)
+export const userRouter = new Hono();
+
+// Route pour créer un utilisateur
+userRouter.post("/user", createUser);
+userRouter.get("/user/:id", getUserById);
