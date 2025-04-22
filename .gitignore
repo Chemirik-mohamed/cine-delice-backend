@@ -16,3 +16,6 @@ dist/
 
 # Logs & système
 .DS_Store
+
+# Bruno
+bruno/
