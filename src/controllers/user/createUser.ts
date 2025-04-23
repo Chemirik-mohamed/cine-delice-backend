@@ -3,8 +3,9 @@ import { createUserSchema } from "schemas/user.schema";
 import { Context } from "hono";
 import { hashPassword } from "lib/bcrypt";
 import { z } from "zod";
+import { CreateUserInput } from "schemas/user.schema";
 
-export const createUser = async (c: Context) => {
+export const createUser = async (c: Context): Promise<Response> => {
   try {
     const userData = await c.req.json();
 
