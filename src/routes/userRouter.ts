@@ -1,11 +1,12 @@
-// src/router/userRouter.ts
 import { Hono } from "hono";
 
 import { createUser } from "controllers/user/createUser";
+import { getAllUsers } from "controllers/user/getAllUser";
 import { getUserById } from "controllers/user/getUserById";
+import { withErrorHandler } from "lib/middlewares/withErrorHandler";
 
-export const userRouter = new Hono();
+export const userRoute = new Hono();
 
-// Route pour créer un utilisateur
-userRouter.post("/user", createUser);
-userRouter.get("/user/:id", getUserById);
+userRoute.post("/", withErrorHandler(createUser));
+userRoute.get("/:id", withErrorHandler(getUserById));
+userRoute.get("/", withErrorHandler(getAllUsers));

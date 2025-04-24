@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { app } from "./routes/index";
-export const honoApp = new Hono();
+import { app as routes } from "./routes/index";
+export const app = new Hono();
 
-honoApp.route("/api", app);
+app.route("/api", routes);

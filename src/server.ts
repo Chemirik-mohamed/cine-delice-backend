@@ -1,7 +1,7 @@
 import { serve } from "@hono/node-server";
 
-import { honoApp } from "./app";
+import { app } from "./app";
 
-serve({ fetch: honoApp.fetch, port: 3000 });
+serve({ fetch: app.fetch, port: 3000 });
 
 console.log("✅ Listening on http://localhost:3000");

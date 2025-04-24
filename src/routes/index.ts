@@ -1,6 +1,6 @@
 import { Hono } from "hono";
-import { userRouter } from "./userRouter";
+import { userRoute } from "./userRouter";
 
 export const app = new Hono();
 
-app.route("/", userRouter);
+app.route("/users", userRoute);
