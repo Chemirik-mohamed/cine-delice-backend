@@ -1,9 +1,9 @@
 import { prisma } from "lib/prisma";
 import { createUserSchema } from "schemas/user.schema";
-import { Context } from "hono";
+import type { Context } from "hono";
 import { hashPassword } from "lib/bcrypt";
 import { z } from "zod";
-import { CreateUserInput } from "schemas/user.schema";
+// import  { git  } from "schemas/user.schema";
 
 export const createUser = async (c: Context): Promise<Response> => {
   try {

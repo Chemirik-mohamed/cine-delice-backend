@@ -1,6 +1,6 @@
 import { prisma } from "lib/prisma";
 import { userIdParamSchema } from "schemas/user.schema";
-import { Context } from "hono";
+import type { Context } from "hono";
 import { z } from "zod";
 
 export const getUserById = async (c: Context) => {

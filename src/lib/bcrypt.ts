@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 
-import { HashPassword, ComparePassword } from "types/bcrypt";
+import type { HashPassword, ComparePassword } from "types/bcrypt";
 
 export const hashPassword: HashPassword = async (password) => {
   try {

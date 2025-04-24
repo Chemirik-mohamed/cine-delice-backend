@@ -57,7 +57,8 @@
       ".next",
       "*.min.js",
       "coverage",
-      "public"
+      "public",
+      "generated"
     ]
   }
 }
