@@ -5,6 +5,8 @@ export const userIdParamSchema = z.object({
   id: z.string().uuid(),
 });
 
+export type userIdParamSchemaInput = z.infer<typeof userIdParamSchema>;
+
 export const CreateUserSchema = z.object({
   username: z.string().min(3),
   email: z.string().email(),

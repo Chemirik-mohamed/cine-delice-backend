@@ -26,21 +26,31 @@ model User {
 }
 
 model Recipe {
-  id          String   @id @default(uuid())
-  title       String
-  description String
-  steps       String
-  imageUrl    String
-  createdAt   DateTime @default(now())
-  userId      String
-  categoryId  String
-  showId      String
+  id              String   @id @default(uuid())
+  title           String
+  description     String
+  imageUrl        String
+  createdAt       DateTime @default(now())
+  userId          String?
+  categoryId      String
+  showId          String
+  createdByName   String
+  createdByAvatar String?
 
-  user        User               @relation(fields: [userId], references: [id])
+  user        User?              @relation(fields: [userId], references: [id])
   category    Category           @relation(fields: [categoryId], references: [id])
   show        Show               @relation(fields: [showId], references: [id])
   ingredients RecipeIngredient[]
   comments    Commentaire[]
+  steps       Step[]
+}
+
+model Step {
+  id       String @id @default(uuid())
+  content  String
+  order    Int
+  recipeId String
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
 }
 
 model Category {

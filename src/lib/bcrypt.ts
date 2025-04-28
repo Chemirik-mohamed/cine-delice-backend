@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 
-import type { HashPassword, ComparePassword } from "types/bcrypt";
+import type { ComparePassword, HashPassword } from "types/bcrypt";
 
 export const hashPassword: HashPassword = async (password) => {
   try {
@@ -8,7 +8,7 @@ export const hashPassword: HashPassword = async (password) => {
     const hash = bcrypt.hash(password, saltRounds);
     return hash;
   } catch (error) {
-    throw new Error("Error hashing password: " + error);
+    throw new Error(`Error hashing password: ${error}`);
   }
 };
 
@@ -20,6 +20,6 @@ export const comparePassword: ComparePassword = async (
     const match = await bcrypt.compare(password, hashPassword);
     return match;
   } catch (error) {
-    throw new Error("Error comparing password: " + error);
+    throw new Error(`Error comparing password:${error} `);
   }
 };

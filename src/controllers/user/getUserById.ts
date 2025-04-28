@@ -2,7 +2,6 @@ import type { Context } from "hono";
 import { prisma } from "lib/prisma";
 import { userIdParamSchema } from "schemas/user.schema";
 import type { UserWithRecipesResponse } from "schemas/user.schema";
-import { z } from "zod";
 
 export const getUserById = async (c: Context): Promise<Response> => {
   const params = userIdParamSchema.parse(c.req.param());
@@ -19,11 +18,19 @@ export const getUserById = async (c: Context): Promise<Response> => {
           id: true,
           title: true,
           description: true,
-          steps: true,
           imageUrl: true,
           userId: true,
           categoryId: true,
           showId: true,
+          createdByName: true,
+          createdByAvatar: true,
+          steps: {
+            select: {
+              id: true,
+              content: true,
+              order: true,
+            },
+          },
         },
       },
     },

@@ -3,7 +3,6 @@ import { hashPassword } from "lib/bcrypt";
 import { prisma } from "lib/prisma";
 import { CreateUserSchema } from "schemas/user.schema";
 import type { CreateUserInput } from "schemas/user.schema";
-import { z } from "zod";
 
 export const createUser = async (c: Context): Promise<Response> => {
   const userData = await c.req.json();
