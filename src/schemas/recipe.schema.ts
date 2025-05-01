@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { StepSchema } from "./steps.scheam";
-import { StepSchemaInput } from "./steps.scheam";
+import { StepInputSchema } from "./steps.scheam";
 
 export const recipeIdParamSchema = z.object({
   id: z.string().uuid(),
@@ -12,7 +12,7 @@ export const CreateRecipeSchema = z.object({
   imageUrl: z.string().url(),
   categoryId: z.string().uuid(),
   showId: z.string().uuid(),
-  steps: z.array(StepSchemaInput),
+  steps: z.array(StepInputSchema),
 });
 
 export type CreateRecipeSchemaInput = z.infer<typeof CreateRecipeSchema>;
@@ -54,7 +54,7 @@ export const updateRecipeSchema = z
     userId: z.string().uuid().optional(),
     categoryId: z.string().uuid().optional(),
     showId: z.string().uuid().optional(),
-    steps: z.array(StepSchemaInput).optional(),
+    steps: z.array(StepSchema).optional(),
   })
   .refine((data) => Object.keys(data).length > 0, {
     message: "Vous devez fournir au moins un champ à mettre à jour",
