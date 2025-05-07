@@ -16,13 +16,14 @@ datasource db {
 }
 
 model User {
-  id        String        @id @default(uuid())
+  id        String    @id @default(uuid())
   username  String
-  email     String        @unique
+  email     String    @unique
   password  String
-  createdAt DateTime      @default(now())
+  avatar    String?
+  createdAt DateTime  @default(now())
   recipes   Recipe[]
-  comments  Commentaire[]
+  comments  Comment[]
 }
 
 model Recipe {
@@ -41,7 +42,7 @@ model Recipe {
   category    Category           @relation(fields: [categoryId], references: [id])
   show        Show               @relation(fields: [showId], references: [id])
   ingredients RecipeIngredient[]
-  comments    Commentaire[]
+  comments    Comment[]
   steps       Step[]
 }
 
@@ -95,7 +96,7 @@ model RecipeIngredient {
   @@id([recipeId, ingredientId])
 }
 
-model Commentaire {
+model Comment {
   id        String   @id @default(uuid())
   content   String
   createdAt DateTime @default(now())

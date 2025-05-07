@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { IngredientSchema } from "./ingredient.schema";
 import { StepSchema } from "./steps.scheam";
 import { StepInputSchema } from "./steps.scheam";
 
@@ -17,7 +18,7 @@ export const CreateRecipeSchema = z.object({
 
 export type CreateRecipeSchemaInput = z.infer<typeof CreateRecipeSchema>;
 
-export const RecipeResponse = z.object({
+export const recipeResponseSchema = z.object({
   id: z.string().uuid(),
   title: z.string(),
   description: z.string(),
@@ -29,9 +30,10 @@ export const RecipeResponse = z.object({
   createdByName: z.string(),
   createdByAvatar: z.string().nullable().optional(),
   steps: z.array(StepSchema),
+  ingredients: z.array(IngredientSchema),
 });
 
-export type RecipeResponseInput = z.infer<typeof RecipeResponse>;
+export type RecipeResponse = z.infer<typeof recipeResponseSchema>;
 
 export const createRecipeWithCategoryNameSchema = z.object({
   title: z.string().min(2, "Le titre est trop court"),
@@ -55,9 +57,10 @@ export const updateRecipeSchema = z
     categoryId: z.string().uuid().optional(),
     showId: z.string().uuid().optional(),
     steps: z.array(StepSchema).optional(),
+    ingredients: z.array(IngredientSchema),
   })
   .refine((data) => Object.keys(data).length > 0, {
     message: "Vous devez fournir au moins un champ à mettre à jour",
   });
 
-export type UpdateRecipeInput = z.infer<typeof updateRecipeSchema>;
+export type updateRecipe = z.infer<typeof updateRecipeSchema>;

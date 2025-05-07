@@ -9,6 +9,7 @@ export const getAllUsers = async (c: Context): Promise<Response> => {
       email: true,
       username: true,
       createdAt: true,
+      avatar: true,
       recipes: {
         select: {
           createdAt: true,
@@ -26,6 +27,16 @@ export const getAllUsers = async (c: Context): Promise<Response> => {
               id: true,
               content: true,
               order: true,
+            },
+          },
+          ingredients: {
+            include: {
+              ingredient: {
+                select: {
+                  id: true,
+                  name: true,
+                },
+              },
             },
           },
         },

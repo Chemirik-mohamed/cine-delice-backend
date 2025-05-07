@@ -12,11 +12,14 @@ export const createrecipes = async (c: Context): Promise<Response> => {
 
   const { title, description, imageUrl, categoryId, showId, steps } =
     validatedData;
+
   const cleanedSteps = formatSteps(steps);
 
   const user = c.get("user");
 
   const createdByName = user?.name ?? "Utilisateur supprimé";
+
+  const createdByAvatar = user?.avatar;
 
   const userId = user?.id ?? null;
 
@@ -28,6 +31,7 @@ export const createrecipes = async (c: Context): Promise<Response> => {
       categoryId,
       showId,
       createdByName,
+      createdByAvatar,
       userId,
       steps: {
         create: cleanedSteps,

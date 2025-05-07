@@ -1,6 +1,6 @@
-import { title } from "process";
-import { string, z } from "zod";
-import { RecipeResponse } from "./recipe.schema";
+import { z } from "zod";
+
+import { recipeResponseSchema } from "./recipe.schema";
 
 export const createShow = z.object({
   title: z.string(),
@@ -8,7 +8,7 @@ export const createShow = z.object({
   imageUrl: z.string().optional(),
   typeShowId: z.string().uuid(),
   externalId: z.string(),
-  recipes: z.array(RecipeResponse),
+  recipes: z.array(recipeResponseSchema),
 });
 
 export type createShowInput = z.infer<typeof createShow>;
@@ -22,16 +22,3 @@ export const ResponseShow = z.object({
   typeShowId: z.string().uuid(),
   externalId: z.string(),
 });
-
-// model Show {
-//     id          String   @id @default(uuid())
-//     title       String
-//     description String
-//     releaseDate DateTime
-//     imageUrl    String
-//     typeShowId  String
-//     externalId  String   @unique
-
-//     typeShow TypeShow @relation(fields: [typeShowId], references: [id])
-//     recipes  Recipe[]
-//   }
