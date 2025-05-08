@@ -23,7 +23,7 @@ export const deleteUser = async (c: Context) => {
 
   if (deleteRecipes) {
     const [, , user] = await prisma.$transaction([
-      prisma.commentaire.deleteMany({ where: { userId: params.id } }),
+      prisma.comment.deleteMany({ where: { userId: params.id } }),
       prisma.recipe.deleteMany({ where: { userId: params.id } }),
       prisma.user.delete({ where: { id: params.id } }),
     ]);

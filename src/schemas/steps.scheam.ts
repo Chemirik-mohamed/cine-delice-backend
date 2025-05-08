@@ -4,7 +4,7 @@ import { z } from "zod";
 export const StepSchema = z.object({
   id: z.string().uuid(),
   content: z.string(),
-  order: z.number().int().min(1).optional(),
+  order: z.number().int().min(1),
 });
 
 // Pour la création d’un step (côté backend, avant insertion)

@@ -1,15 +1,10 @@
 import type { Context } from "hono";
 import { prisma } from "lib/prisma";
-import {
-  recipeIdParamSchema,
-  recipeResponseSchema,
-} from "schemas/recipe.schema";
+import type { RecipeResponse } from "schemas/recipe.schema";
+import { recipeListResponseSchema } from "schemas/recipe.schema";
 
-export const getRecipesById = async (c: Context): Promise<Response> => {
-  const params = recipeIdParamSchema.parse(c.req.param());
-
-  const recipe = await prisma.recipe.findUnique({
-    where: { id: params.id },
+export const getAllRecipes = async (c: Context): Promise<Response> => {
+  const recipes = await prisma.recipe.findMany({
     select: {
       id: true,
       title: true,
@@ -41,11 +36,7 @@ export const getRecipesById = async (c: Context): Promise<Response> => {
     },
   });
 
-  if (!recipe) {
-    return c.json({ error: "Recette introuvable" }, 404);
-  }
-
-  const result = recipeResponseSchema.safeParse(recipe);
+  const result = recipeListResponseSchema.safeParse(recipes);
 
   if (!result.success) {
     return c.json(
@@ -54,5 +45,5 @@ export const getRecipesById = async (c: Context): Promise<Response> => {
     );
   }
 
-  return c.json(result.data, 200);
+  return c.json(result.data);
 };

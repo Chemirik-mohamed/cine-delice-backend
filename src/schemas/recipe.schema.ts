@@ -24,11 +24,11 @@ export const recipeResponseSchema = z.object({
   description: z.string(),
   imageUrl: z.string().url(),
   createdAt: z.date(),
-  userId: z.string().uuid().nullable().optional(),
+  userId: z.string().uuid().nullable(),
   categoryId: z.string().uuid(),
   showId: z.string().uuid(),
   createdByName: z.string(),
-  createdByAvatar: z.string().nullable().optional(),
+  createdByAvatar: z.string().nullable(),
   steps: z.array(StepSchema),
   ingredients: z.array(IngredientSchema),
 });
@@ -64,3 +64,6 @@ export const updateRecipeSchema = z
   });
 
 export type updateRecipe = z.infer<typeof updateRecipeSchema>;
+
+export const recipeListResponseSchema = z.array(recipeResponseSchema);
+export type RecipeListResponse = z.infer<typeof recipeListResponseSchema>;

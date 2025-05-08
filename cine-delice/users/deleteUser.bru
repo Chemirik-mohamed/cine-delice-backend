@@ -1,0 +1,17 @@
+meta {
+  name: deleteUser
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:3000/api/users/dc244df0-9083-415d-a2ae-90e188062960
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "deleteRecipes":true
+  }
+}

@@ -31,6 +31,16 @@ export const getUserById = async (c: Context): Promise<Response> => {
               order: true,
             },
           },
+          ingredients: {
+            include: {
+              ingredient: {
+                select: {
+                  id: true,
+                  name: true,
+                },
+              },
+            },
+          },
         },
       },
     },
