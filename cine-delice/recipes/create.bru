@@ -6,6 +6,30 @@ meta {
 
 post {
   url: http://localhost:3000/api/recipes
-  body: none
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "title": "Tajine de poulet",
+    "description": "Un délicieux tajine marocain aux olives et citron confit.",
+    "imageUrl": "https://example.com/images/tajine.jpg",
+    "categoryId": "f51c70b2-ea92-4a07-bc37-2416c2a1a0f5",
+    "showId": "a278e49a-51f4-4a4e-82cd-1275b0e4021a",
+    "steps": [
+      {
+        "content": "Faire revenir les oignons avec de l’huile d’olive.",
+        "order": 1
+      },
+      {
+        "content": "Ajouter le poulet, les épices, et faire dorer.",
+        "order": 2
+      },
+      {
+        "content": "Ajouter les olives et le citron confit. Laisser mijoter.",
+        "order": 3
+      }
+    ]
+  }
 }
